@@ -16,10 +16,10 @@ var apidocSwagger = require('../lib/index');
 
 var argv = nomnom
     .option('file-filters', { abbr: 'f', 'default': '.*\\.(clj|coffee|cs|dart|erl|go|java|scala|js|php?|py|rb|ts|pm)$',
-            help: 'RegEx-Filter to select files that should be parsed (multiple -f can be used).' })
+        help: 'RegEx-Filter to select files that should be parsed (multiple -f can be used).' })
 
     .option('exclude-filters', { abbr: 'e', 'default': '',
-            help: 'RegEx-Filter to select files / dirs that should not be parsed (many -e can be used).', })
+        help: 'RegEx-Filter to select files / dirs that should not be parsed (many -e can be used).' })
 
     .option('input', { abbr: 'i', 'default': './', help: 'Input / source dirname.' })
 
@@ -33,8 +33,10 @@ var argv = nomnom
 
     .option('color', { flag: true, 'default': true, help: 'Turn off log color.' })
 
+    .option('host', { help: 'target host to use instead of url in package.json/apidoc.json'})
+
     .option('parse', { flag: true, 'default': false,
-            help: 'Parse only the files and return the data, no file creation.' })
+        help: 'Parse only the files and return the data, no file creation.' })
 
     .option('parse-filters'  , { help: 'Optional user defined filters. Format name=filename' })
     .option('parse-languages', { help: 'Optional user defined languages. Format name=filename' })
@@ -68,7 +70,6 @@ function transformToObject(filters) {
     filters.forEach(function(filter) {
         var splits = filter.split('=');
         if (splits.length === 2) {
-            var obj = {};
             result[splits[0]] = path.resolve(splits[1], '');
         }
     });
@@ -84,6 +85,7 @@ var options = {
     debug         : argv['debug'],
     parse         : argv['parse'],
     colorize      : argv['color'],
+    host          : argv['host'],
     filters       : transformToObject(argv['parse-filters']),
     languages     : transformToObject(argv['parse-languages']),
     parsers       : transformToObject(argv['parse-parsers']),
