@@ -7,7 +7,7 @@ const expectedObject =
     'info': {
         'title': 'steplix-apidoc-swagger',
         'description': 'Convert api doc json to swagger json, including aws api-gateway attributes',
-        'version': '0.4.3',
+        'version': '0.4.5',
     },
     'paths': {
         '/user/id': {
@@ -46,6 +46,8 @@ const expectedObject =
                     'passthroughBehavior': 'when_no_match',
                     'httpMethod': 'GET',
                     'type': 'http',
+                    'connectionType': 'VPC_LINK',
+                    'connectionId': "${stageVariables.idVpcLink}",
                     'responses': {
                         'default': {
                             'statusCode': '200'
