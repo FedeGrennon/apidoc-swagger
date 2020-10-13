@@ -7,7 +7,7 @@ const expectedObject =
     'info': {
         'title': 'steplix-apidoc-swagger',
         'description': 'Convert api doc json to swagger json, including aws api-gateway attributes',
-        'version': '0.4.5',
+        'version': '0.4.6',
     },
     'paths': {
         '/user/id': {

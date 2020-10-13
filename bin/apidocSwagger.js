@@ -35,6 +35,8 @@ var argv = nomnom
 
     .option('host', { help: 'target host to use instead of url in package.json/apidoc.json'})
 
+    .option('security-definitions', { help: 'security definitios to implement'})
+
     .option('parse', { flag: true, 'default': false,
         help: 'Parse only the files and return the data, no file creation.' })
 
@@ -77,22 +79,23 @@ function transformToObject(filters) {
 }
 
 var options = {
-    excludeFilters: argv['exclude-filters'],
-    includeFilters: argv['file-filters'],
-    src           : argv['input'],
-    dest          : argv['output'],
-    verbose       : argv['verbose'],
-    debug         : argv['debug'],
-    parse         : argv['parse'],
-    colorize      : argv['color'],
-    host          : argv['host'],
-    filters       : transformToObject(argv['parse-filters']),
-    languages     : transformToObject(argv['parse-languages']),
-    parsers       : transformToObject(argv['parse-parsers']),
-    workers       : transformToObject(argv['parse-workers']),
-    silent        : argv['silent'],
-    simulate      : argv['simulate'],
-    markdown      : argv['markdown']
+    excludeFilters      : argv['exclude-filters'],
+    includeFilters      : argv['file-filters'],
+    src                 : argv['input'],
+    dest                : argv['output'],
+    verbose             : argv['verbose'],
+    debug               : argv['debug'],
+    parse               : argv['parse'],
+    colorize            : argv['color'],
+    host                : argv['host'],
+    securityDefinitions : transformToObject(argv['security-definitions']),
+    filters             : transformToObject(argv['parse-filters']),
+    languages           : transformToObject(argv['parse-languages']),
+    parsers             : transformToObject(argv['parse-parsers']),
+    workers             : transformToObject(argv['parse-workers']),
+    silent              : argv['silent'],
+    simulate            : argv['simulate'],
+    markdown            : argv['markdown']
 };
 
 if (apidocSwagger.createApidocSwagger(options) === false) {
