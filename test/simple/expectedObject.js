@@ -7,7 +7,7 @@ const expectedObject =
     'info': {
         'title': 'steplix-apidoc-swagger',
         'description': 'Convert api doc json to swagger json, including aws api-gateway attributes',
-        'version': '0.4.6',
+        'version': '0.4.7',
     },
     'paths': {
         '/user/id': {
@@ -28,6 +28,14 @@ const expectedObject =
                         'required': true,
                         'type': 'number',
                         'description': 'Users unique ID.'
+                    },
+                    {
+                        'name': 'Authorization',
+                        'in': 'header',
+                        'required': true,
+                        'type': 'string',
+                        'description': 'Bearer token authorization. Example Auhorization=\'bearer eyJhbGciOiJIUzI....wdgMI\'',
+                        'group': 'Header'
                     }
                 ],
                 'responses': {
@@ -54,7 +62,8 @@ const expectedObject =
                         }
                     },
                     'requestParameters': {
-                        'integration.request.path.id': 'method.request.path.id'
+                        'integration.request.path.id': 'method.request.path.id',
+                        'integration.request.header.Authorization': 'method.request.header.Authorization'
                     }
                 }
             }
